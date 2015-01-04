@@ -1,0 +1,39 @@
+language: php
+php:
+  - 5.4
+  - 5.5
+  - 5.6
+  - hhvm
+
+env:
+  # Test in Symfony LTS and latest stable release
+  - SYMFONY_VERSION="2.3.*"
+  - SYMFONY_VERSION="2.6.*"
+
+before_script:
+  # Install dependancies
+  - composer require --dev --prefer-dist symfony/symfony:${SYMFONY_VERSION}
+
+script:
+  # Run the tests
+  - php ./vendor/phpunit/phpunit/phpunit --coverage-clover=build/logs/clover.xml
+
+after_script:
+  # Upload code coverage to Scrutinizr.com
+  - wget https://scrutinizer-ci.com/ocular.phar
+  - php ocular.phar code-coverage:upload --format=php-clover build/logs/clover.xml
+
+  # Upload code coverage to Coveralls.io
+  - php vendor/satooshi/php-coveralls/composer/bin/coveralls -v
+
+matrix:
+  # Also Build with PHP latest and Symfony next
+  include:
+    - php: 5.6
+      env: SYMFONY_VERSION="2.7.*@dev"
+
+  allow_failures:
+    - php: hhvm
+    - env: SYMFONY_VERSION="2.7.*@dev"
+
+  fast_finish: true

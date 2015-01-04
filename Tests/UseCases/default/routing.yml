@@ -1,0 +1,11 @@
+default_template_article_list:
+    pattern: /default-template-article
+    defaults:
+        articleName: default-template-article
+        _controller: AxstradArticleBundle:Default:index
+
+default_template_article_show:
+    pattern: /default-template-article/{article}
+    defaults:
+        articleName: default-template-article
+        _controller: AxstradArticleBundle:Default:list

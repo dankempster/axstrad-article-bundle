@@ -1,0 +1,44 @@
+{
+    "name": "axstrad/article-bundle",
+    "description": "",
+    "type": "symfony-bundle",
+    "keywords": [],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dan Kempster",
+            "email": "dev@dankempster.co.uk",
+            "homepage": "https://github.com/dankempster",
+            "role": "Developer"
+        }
+    ],
+
+    "require": {
+        "php": "~5.4",
+        "axstrad/content": "0.1.*",
+        "doctrine/doctrine-bundle": "1.2.*",
+        "doctrine/orm": "2.4.*",
+        "symfony/symfony": "2.4.*"
+    },
+
+    "require-dev": {
+        "axstrad/use-case-test-bundle": "dev-master",
+        "doctrine/doctrine-fixtures-bundle": "~2.2",
+        "liip/functional-test-bundle": "~1",
+        "phpunit/phpunit": "~4.1",
+        "satooshi/php-coveralls": "dev-master",
+        "sensio/framework-extra-bundle": "~2.3 | ~3"
+    },
+
+    "autoload":     {
+        "psr-4": { "Axstrad\\Bundle\\ArticleBundle\\": "" }
+    },
+
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1.x-dev"
+        }
+    },
+
+    "minimum-stability": "dev"
+}

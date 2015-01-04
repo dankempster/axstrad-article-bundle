@@ -1,0 +1,29 @@
+parameters:
+    axstrad_article.array_definitions: []
+
+    axstrad_article.provider.class: Article\Bundle\ArticleBundle\Provider\ConcreteArticleProvider
+    axstrad_article.param_converter.class: Article\Bundle\ArticleBundle\Request\ParamConverter
+    axstrad_article.definition_registry.class: Axstrad\Bundle\ArticleBundle\Defintion\ArticleDefinitions
+
+services:
+    axstrad_article.definition_registry:
+        class: %axstrad_article.definition_registry.class%
+        arguments:
+            - %axstrad_article.array_definitions%
+
+    axstrad_article.provider:
+        class: %axstrad_article.provider.class%
+        arguments:
+            - @axstrad_article.definition_registry
+            - @doctrine.orm.entity_manager
+
+    axstrad_article.param_converter:
+        class: %axstrad_article.param_converter.class%
+        arguments:
+            - @axstrad_article.provider
+        tags:
+            -
+                name: request.param_converter
+                priority:false
+                converter: axstrad_article_converter
+

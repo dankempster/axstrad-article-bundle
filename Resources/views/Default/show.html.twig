@@ -1,0 +1,8 @@
+{% extends 'AxstradArticleBundle::layout.html.twig' %}
+
+{% block body %}
+    <article>
+        <h1>{{ article.heading }}</h1>
+        {{ article.copy|raw }}
+    </article>
+{% endblock %}

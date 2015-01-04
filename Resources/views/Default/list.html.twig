@@ -1,0 +1,19 @@
+{% extends 'AxstradArticleBundle::layout.html.twig' %}
+
+{% block body %}
+    <article class="axstradArticleBundle-listArticle axstradArticleBundle-type{{ articleName|title }}">
+        {% if articles|length > 0 %}
+            <ul class="tjsArticleBundle-list">
+                {% for article in articles %}
+                    <li>
+                        <article>
+                            <h2><a href="{{ path('axstrad_article.show', {'id': article.id}) }}">{{ article.heading }}</a></h2>
+                            {{ article.copy|raw }}
+                        </article>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </article>
+{% endblock body %}
+

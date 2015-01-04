@@ -1,0 +1,3 @@
+axstrad_article_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: AxstradArticleBundle:Default:index }

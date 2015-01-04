@@ -1,0 +1,43 @@
+framework:
+    secret: test
+    test:   ~
+    session:
+        storage_id: session.storage.filesystem
+    form:            true
+    csrf_protection: false
+    validation:
+        enabled: true
+    router:
+        resource: %kernel.root_dir%/routing.yml
+    templating:
+        engines: [twig]
+    profiler: { only_exceptions: false }
+
+doctrine:
+    dbal:
+        driver: pdo_sqlite
+        path: %kernel.cache_dir%/axstrad.test
+        charset:  UTF8
+    orm:
+        auto_generate_proxy_classes: true
+        metadata_cache_driver: array
+        query_cache_driver: array
+        result_cache_driver: array
+        auto_mapping: true
+        mappings:
+            app_bundle:
+                type: annotation
+                prefix: Axstrad\Bundle\ArticleBundle\Tests\UseCases\AppBundle\Entity
+                dir: "%kernel.root_dir%/../AppBundle/Entity"
+                is_bundle: true
+            axstrad_content:
+                type: yml
+                prefix: Axstrad\Component\Content\Orm
+                dir: "%kernel.root_dir%/../../../vendor/axstrad/content/config/Orm"
+                alias: AxstradContent
+                is_bundle: false
+
+## LiipFunctionalTestBundle
+liip_functional_test:
+    cache_sqlite_db: true
+    query_count.max_query_count: 50
